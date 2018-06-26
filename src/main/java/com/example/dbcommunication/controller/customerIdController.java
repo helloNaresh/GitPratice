@@ -21,6 +21,7 @@ public class customerIdController {
 	public List<Map<String, Object>> customerDetails(@RequestBody CustomerIdReq customerIdReq) {
 
 		return customerIdService.customerDetails(customerIdReq);
+		
 	}
 
 }
