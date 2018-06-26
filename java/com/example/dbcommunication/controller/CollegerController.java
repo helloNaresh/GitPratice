@@ -29,7 +29,7 @@ public class CollegerController {
 	@ApiOperation(value = "This API is used to get information about the college and department details in that college")
 	@PostMapping("collegeInfo")
 	public CollegeBean collegeInfo(@RequestBody CollegeBean collegeBean) {
-
+ 
 		return collegeService.collegeInfo(collegeBean);
 	}
 
