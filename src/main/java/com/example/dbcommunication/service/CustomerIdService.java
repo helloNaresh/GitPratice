@@ -11,5 +11,5 @@ public interface CustomerIdService {
 
 	List<CustomerIdRes> customerDetailsRes(CustomerIdReq customerIdReq);
 	/*this service is for customerId*/
-
+//hello drucare
 }
