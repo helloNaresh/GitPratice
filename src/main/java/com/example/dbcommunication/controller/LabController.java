@@ -35,5 +35,6 @@ public class LabController {
 		return imageingUtill.responseEntityForFetchSuccess(labService.fetchLabDetails(labBeanReq));
 
 	}
+//	this controller class is used for contolling the flow of lab details
 
 }
