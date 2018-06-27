@@ -11,7 +11,11 @@ public class LabBeanReq {
 	@ApiModelProperty(value="this field is mandatory",required=true)
 	@NotNull
 	private Integer orgGroupId;
-	/*private Long package_id;
+	@ApiModelProperty(value="mandatory",required=true)
+	@NotNull
+	private Long package_id;
+	@ApiModelProperty(value="mandatory",required=true)
+	@NotNull
 	private Long patient_id;
 
 	public Long getPackage_id() {
@@ -29,18 +33,18 @@ public class LabBeanReq {
 	}
 
 	public void setPatient_id(Long patient_id) {
-		this.patient_id = patient_id;
+		this.patient_id = patient_id;   
 	}
-*/
+
 	public Integer getOrgGroupId() {
 		return orgGroupId;
 	}
 
-	@Override
+/*	@Override
 	public String toString() {
 		return "LabBeanReq [orgGroupId=" + orgGroupId + "]";
 	}
-
+*/
 	void setOrgGroupId(Integer orgGroupId) {
 		this.orgGroupId = orgGroupId;
 	}
@@ -49,8 +53,8 @@ public class LabBeanReq {
 	public String toString() {
 		return "LabBeanReq [orgGroupId=" + orgGroupId + ", package_id=" + package_id + ", patient_id=" + patient_id
 				+ "]";
-	}
-*/
+	}*/
+
 
 }
 
