@@ -23,18 +23,18 @@ public class LabDaoImpl implements LabDao {
 		Map<String, Object> map = new HashMap<>();
 		String QueryForFetch = "select lrx.package_id, lrx.panel_id, lrx.test_id, lrx.org_id, lrx.technician_test_remarks,lrt.patient_id, lrt.hos_patient_id,"
 				+ "lrt.patient_type, lht.macroscopic_description,lht.created_usr_id, lht.brief_clinical_history FROM lab.lab_analysis_request_test_xtrans lrx "
-				+ "join lab.lab_analysis_request_trans lrt on lrx.org_id=lrt.org_id join lab.lab_biopsy_history_trans lht on lrx.org_id=lrx.org_id where lrx.org_grp_id=:org_grp_id ";
+				+ "join lab.lab_analysis_request_trans lrt on lrx.org_id=lrt.org_id join lab.lab_biopsy_history_trans lht on lrx.org_id=lrx.org_id where lrx.org_grp_id=:org_grp_id limit 100";
 
 		map.put("org_grp_id", labBeanReq.getOrgGroupId());
 		StringBuilder stringBuilder = new StringBuilder(QueryForFetch);
 
-		if (true) {
+		/*if (true) {
 
 			map.put("lrx.package_id", labBeanReq.getPackage_id());
 			map.put("lrt.patient_id", labBeanReq.getPatient_id());
 			stringBuilder.append(" or lrx.package_id=:lrx.package_id or lrt.patient_id=:lrt.patient_id  limit 100 ");
 		}
-
+*/
 		List<Map<String, Object>> data = namedParameterJdbcTemplate.queryForList(stringBuilder.toString(), map);
 		List<LabBeanRes> labBeanResNew = new ArrayList<>();
 
