@@ -19,5 +19,5 @@ public class CustomerIdRes {
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
-
+ /*this bean class is customerIdreq*/
 }
