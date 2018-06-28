@@ -10,5 +10,7 @@ public interface CustomerIdService {
 	public List<Map<String, Object>> customerDetails(CustomerIdReq customerIdReq);
 
 	List<CustomerIdRes> customerDetailsRes(CustomerIdReq customerIdReq);
-
+	/*this service is for customerId*/
+//hello drucare
 }
+

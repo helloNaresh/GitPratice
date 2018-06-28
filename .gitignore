@@ -22,4 +22,16 @@
 /nbbuild/
 /dist/
 /nbdist/
+
+
 /.nb-gradle/
+
+/.nb-gradle/
+
+logs/appcore.json
+.logs/appcore.json
+/logs/appcore.json
+
+/.metadata/
+
+

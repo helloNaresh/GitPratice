@@ -35,5 +35,5 @@ public class LabController {
 		return imageingUtill.responseEntityForFetchSuccess(labService.fetchLabDetails(labBeanReq));
 
 	}
-
+//this api is used to get lab Details
 }

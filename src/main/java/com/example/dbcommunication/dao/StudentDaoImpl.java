@@ -33,5 +33,6 @@ public class StudentDaoImpl implements StudentDao {
 //		MapSqlParameterS
 //		
 //	}
+	/*this dao is for implemented studentdao*/
 
 }
