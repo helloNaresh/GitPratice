@@ -29,7 +29,7 @@ public class FacultyDaoImpl implements FacultyDao {
 
 	@Override
 	public FacultyInsertRes facultyInfoInsert(FacultyInsert facultyInsert) {
-		FacultyInsertRes facultyInsertRes=new FacultyInsertRes();
+		FacultyInsertRes facultyInsertRes = new FacultyInsertRes();
 		MapSqlParameterSource parameter = new MapSqlParameterSource();
 		parameter.addValue("facultyName", facultyInsert.getFacultyName());
 		parameter.addValue("teaches", facultyInsert.getTeaches());
@@ -40,26 +40,29 @@ public class FacultyDaoImpl implements FacultyDao {
 		facultyInsertRes.setTeaches(facultyInsert.getTeaches());
 		String facultyInfoInsertQuery = "insert into practice_dev.faculty  (faculty_nm,subject_teaches,experience) values(:facultyName,:teaches,:experience)";
 		namedParameterJdbcTemplate.update(facultyInfoInsertQuery, parameter, keyHolder, new String[] { "faculty_id" });
-		Integer id=keyHolder.getKey().intValue();
+		Integer id = keyHolder.getKey().intValue();
 		facultyInsertRes.setFacultyId(id);
 		return facultyInsertRes;
 	}
+
 	@Override
 	public FacultyUpdateRes facultyInfoUpdate(FacultyUpdate facultyUpdate) {
 		MapSqlParameterSource parameter = new MapSqlParameterSource();
-		FacultyUpdateRes facultyUpdateRes=new FacultyUpdateRes();
+		FacultyUpdateRes facultyUpdateRes = new FacultyUpdateRes();
 		parameter.addValue("faculty_id", facultyUpdate.getFacultyId());
 		parameter.addValue("faculty_nm", facultyUpdate.getFacultyName());
 		parameter.addValue("subject_teaches", facultyUpdate.getTeaches());
 		parameter.addValue("experience", facultyUpdate.getExperience());
 		String facultyInfoUpdateQuery = "update practice_dev.faculty set faculty_nm=:faculty_nm,subject_teaches=:subject_teaches,experience=:experience  WHERE faculty_id=:faculty_id";
-		checkRecordsCountIfZeroRecordFoundThrowException(namedParameterJdbcTemplate.update(facultyInfoUpdateQuery, parameter));
+		checkRecordsCountIfZeroRecordFoundThrowException(
+				namedParameterJdbcTemplate.update(facultyInfoUpdateQuery, parameter));
 		facultyUpdateRes.setMessage("Updated successfully");
 		return facultyUpdateRes;
 	}
+
 	@Override
 	public FacultyDeleteRes deleteFacultyDetails(FacultyDeleteOperation facultyDeleteOperation) {
-		FacultyDeleteRes facultyDeleteRes=new FacultyDeleteRes();
+		FacultyDeleteRes facultyDeleteRes = new FacultyDeleteRes();
 		MapSqlParameterSource parameter = new MapSqlParameterSource();
 		parameter.addValue("faculty_id", facultyDeleteOperation.getFacultyId());
 		String deleteQuery = "delete from practice_dev.faculty where faculty_id=:faculty_id";
@@ -67,32 +70,33 @@ public class FacultyDaoImpl implements FacultyDao {
 		facultyDeleteRes.setMessage("Deleted Successfully");
 		return facultyDeleteRes;
 	}
+
 	@Override
 	public List<FacultyBean> selectFacultyDetails(FacultyFetch facultyFetch) {
 		String selectQuery = "select faculty_id,faculty_nm,subject_teaches,experience from practice_dev.faculty where faculty_id=:faculty_id";
 		Map<String, Object> map = new HashMap<>();
-		
-		map.put("faculty_id", facultyFetch.getFacultyId());
-		List<Map<String,Object>> facultyDetails= namedParameterJdbcTemplate.queryForList(selectQuery, map);
-		List<FacultyBean> facultyBean=new ArrayList<>();
-		for(Map<String,Object> facultyData:facultyDetails){
-			
-			((FacultyBean) facultyBean).setFacultyId((Integer) facultyData.get("faculty_id"));
-			((FacultyBean) facultyBean).setFacultyName((String) facultyData.get("faculty_nm"));
-			((FacultyBean) facultyBean).setTeaches((String) facultyData.get("subject_teaches"));
-			((FacultyBean) facultyBean).setExperience((String) facultyData.get("experience"));
-			
 
-			facultyBean.add((FacultyBean) facultyData);
-			
+		map.put("faculty_id", facultyFetch.getFacultyId());
+		List<Map<String, Object>> facultyDetails = namedParameterJdbcTemplate.queryForList(selectQuery, map);
+		List<FacultyBean> facultyBean = new ArrayList<>();
+		for (Map<String, Object> facultyData : facultyDetails) {
+			FacultyBean facultyNewBean = new FacultyBean();
+
+			facultyNewBean.setFacultyId((Integer) facultyData.get("faculty_id"));
+			facultyNewBean.setFacultyName((String) facultyData.get("faculty_nm"));
+			facultyNewBean.setTeaches((String) facultyData.get("subject_teaches"));
+			facultyNewBean.setExperience((String) facultyData.get("experience"));
+
+			facultyBean.add(facultyNewBean);
+
 		}
 		return facultyBean;
-		}
-		public void checkRecordsCountIfZeroRecordFoundThrowException(int count){
-			if(count==0){
-				throw new RecordNotFoundException();
-			}
-		}
-
 	}
-	
+
+	public void checkRecordsCountIfZeroRecordFoundThrowException(int count) {
+		if (count == 0) {
+			throw new RecordNotFoundException();
+		}
+	}
+
+}

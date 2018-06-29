@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @ApiResponses(value = {
-		@ApiResponse(code = 403, message = "You are not an Authorized user please contact admin person"),
+		@ApiResponse(code = 403, message = "You are not an Authorized user please contact admin "),
 		@ApiResponse(code = 404, message = "GateWay not fond"),
 		@ApiResponse(code = 500, message = "Internal Server Problem"),
 		@ApiResponse(code = 200, message = "Operation Successfull") })
